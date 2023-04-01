@@ -7,15 +7,15 @@ const getRecentlySold = async(req, res) => {
     try {
       // console.log(productSchema)
         // await 
-        // const products=await Product.find()
+        const products=await recentltySoldSchema.find()
         // Product.insertMany()
-        const createrecentltySold=await recentltySoldSchema.insertMany(data.RecentSold)
-      
+        // const createrecentltySold=await recentltySoldSchema.insertMany(data.RecentSold)
+
         // const { username, password } = req.body;
         // const productSchema=await productSchema.create({username,password})
         // res.status(200).json({productSchema});
-        
-        res.send(createrecentltySold)
+        res.send(products)
+        // res.send(createrecentltySold)
         
     } catch (error) {
       res.status(500).json({ msg: error });

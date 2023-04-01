@@ -7,9 +7,8 @@ const productSchema=new mongoose.Schema({
         trim:true
     },
     image:{
-        type:String,
-        required:[true,"image required"],
-        trim:true
+        type: String,
+        required: true
     },
     no_of_review:{
         type:Number,

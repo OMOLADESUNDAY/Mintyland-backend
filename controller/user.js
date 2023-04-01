@@ -26,18 +26,22 @@ const postInfo =expressAsyncHandler(
     }
   }
 ) 
-// const getInfo = async(req, res) => {
-//   try {
-//       const { name,email,password,isAdmin } = req.body;
-//       const user=await User.insertMany(data.user)
-//       // const user=await User.create({name,email,password,isAdmin})
-//       res.status(200).send(user);
-//   } catch (error) {
-//     res.status(500).json({ msg: error });
-//   }
-// };
+const postSignInfo=expressAsyncHandler(
+  async(req, res) => {
+    const isAdmin=false
+    try {
+        const {username,email,password } = req.body;
+        const newPassword=bcrypt.hashSync(password)
+        const user=await User.create({name:username,isAdmin,email,password:newPassword})
+        res.send(user)
+    } catch (error) {
+      res.status(500).json({ msg: error });
+    }
+  }
+) 
 
 
-module.exports={postInfo}
+
+module.exports={postInfo,postSignInfo}
 
 
