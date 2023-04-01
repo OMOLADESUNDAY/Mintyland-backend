@@ -5,7 +5,7 @@ const getLandandEstate=async(req, res) => {
       // const createLand=await LandAndEstate.insertMany(data.LandAndEstateData)
       const land=await LandAndEstate.find()
         res.send(land)
-        // res.send(products)
+        // res.send(createLand)
         
     } catch (error) {
       res.status(500).json({ msg: error });

@@ -7,7 +7,6 @@ const {postInfo,postSignInfo}=require('../controller/user.js')
 userRouter.post('/login',postInfo)
 userRouter.post('/signin',postSignInfo)
 
-
 module.exports={userRouter}
 
 
