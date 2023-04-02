@@ -6,7 +6,7 @@ const express=require('express')
 const app=express()
 const getProduct = async(req, res) => {
     try {
-      const product=await Product.insertMany(data.TrendingData)
+      const product=await Product.find()
         res.send(product)
     } catch (error) {
       res.status(500).json({ msg: error });
