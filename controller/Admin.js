@@ -1,4 +1,5 @@
 const Product=require('../model/productSchema.js')
+const User=require('../model/userSchema.js')
 const cloudinary = require('cloudinary').v2;
 const path = require('path');
 const multer = require('multer')
@@ -59,10 +60,8 @@ const createNewProduct=(req, res) => {
         try {
           
           const result = await cloudinary.uploader.upload(req.file.path);
-          const image = result.secure_url
-            
-        res.send('kk')        
-            const product = await Product.create({name,no_of_review,countInStock,category,price,description,rating,image}) 
+          const image = result.secure_url       
+          const product = await Product.create({name,no_of_review,countInStock,category,price,description,rating,image}) 
           res.status(200).send(product);
         } catch (err) {
           console.log(err);
@@ -77,12 +76,12 @@ const deleteProduct= async (req, res) => {
     try {
       const data = await Product.findByIdAndDelete(id);
       if (!data) {
-        return res.status(404).json({ message: 'Data not found' });
+        return res.status(404).send('Data not found' );
       }
-      res.status(200).json({ message: 'Data deleted successfully' });
+      res.status(200).send( 'Data deleted successfully');
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: 'Internal server error' });
+      res.status(500).send('Internal server error');
     }
   }
 
@@ -96,7 +95,50 @@ const updateProduct= async (req, res) => {
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: 'Internal server error' });
+      res.status(500).send('Internal server error');
+    }  
+  }
+  const getAllProduct=async(req,res)=>{
+    try {
+      const allProduct=await Product.find()
+      if(allProduct){
+        res.status(200).send(allProduct)
+      }
+      else{
+        res.status(404).send('Products Not Found')
+      }
+    } catch (error) {
+      res.status(500).send('internal server error')      
+    }
+  }
+
+
+
+  const deleteUser= async (req, res) => {
+    const id = req.params.id;
+    try {
+      const user = await User.findByIdAndDelete(id);
+      if (!user) {
+        return res.status(404).send('User not found' );
+      }
+      res.status(200).send( 'User deleted successfully');
+    } catch (error) {
+      res.status(500).send('Internal server error');
+    }
+  }
+
+
+  const getAllUser=async(req,res)=>{
+    try {
+      const allUser=await User.find()
+      if(allUser){
+        res.status(200).send(allUser)
+      }
+      else{
+        res.status(404).send('Products Not Found')
+      }
+    } catch (error) {
+      res.status(500).send('internal server error')      
     }
   }
 // // Delete a data item by ID
@@ -128,4 +170,4 @@ const updateProduct= async (req, res) => {
 //     res.status(500).json({ message: 'Internal server error' });
 //   }
 // });
-module.exports={createNewProduct,deleteProduct,updateProduct}
+module.exports={createNewProduct,deleteProduct,updateProduct,getAllProduct,deleteUser,getAllUser}

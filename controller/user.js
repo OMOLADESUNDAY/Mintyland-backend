@@ -31,9 +31,15 @@ const postSignInfo=expressAsyncHandler(
     const isAdmin=false
     try {
         const {username,email,password } = req.body;
-        const newPassword=bcrypt.hashSync(password)
-        const user=await User.create({name:username,isAdmin,email,password:newPassword})
-        res.send(user)
+        const checkExist=User.findOne({email:email})
+        
+          if(!checkExist){
+            const newPassword=bcrypt.hashSync(password)
+            const user=await User.create({name:username,isAdmin,email,password:newPassword})
+            res.send(user)
+          }
+          res.status(409).json({message:'email already exist'})
+         
     } catch (error) {
       res.status(500).json({ msg: error });
     }

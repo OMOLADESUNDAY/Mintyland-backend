@@ -13,10 +13,9 @@ const getLandandEstate=async(req, res) => {
   }
   const getSingleLandandEstate=async(req,res)=>{
     try {
-            // console.log(LandAndEstate)
-                // const createLand=await LandAndEstate.insertMany(data.LandAndEstateData)
+         
         const landandestate =await LandAndEstate.findOne({_id:req.params.id})
-        // console.log(landandestate)
+        
         if (landandestate){
             res.send(landandestate)
         }
