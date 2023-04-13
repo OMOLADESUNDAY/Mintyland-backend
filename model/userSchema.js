@@ -42,6 +42,7 @@ const AssetSchema = new mongoose.Schema({
             countInStock:0,
             createdAt:'',
             description:'',
+            price:0,
             image:'',
             name:'',
             no_of_review:0,

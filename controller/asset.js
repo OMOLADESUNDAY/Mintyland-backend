@@ -6,6 +6,9 @@ const getAsset=async(req,res)=>{
         if(asset){
             res.send(asset.assets.asset)           
         }
+        else{
+            res.json("User not found")
+        }
     } catch (error) {
         console.log(error)
     }

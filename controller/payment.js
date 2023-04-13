@@ -2,6 +2,7 @@ const User=require('../model/userSchema')
 const Product=require('../model/productSchema')
 const getPayment=async(req,res)=>{
     const {userId,transactionResponse,asset,totalPrice,etherPrice}=req.body
+    console.log(asset)
     try {
         const user= await User.findByIdAndUpdate({_id:userId}, {
             $push: {

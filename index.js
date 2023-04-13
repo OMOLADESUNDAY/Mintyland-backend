@@ -7,6 +7,7 @@ const {userRouter}=require('./route/user.js')
 const {assetRouter}=require('./route/asset.js')
 const {adminrouter}=require('./route/admin.js')
 const {paymentRouter}=require('./route/payment.js')
+const {forgotPasswordRouter}=require('./route/forgotPassword.js')
 const {data}=require('./data')
 const {connectDB}=require('./db/connect.js')
 
@@ -31,6 +32,7 @@ app.use('/api/recentlysold',recentlySoldRouter)
 app.use('/api/admin/',adminrouter)
 app.use('/api',paymentRouter)
 app.use('/api/asset',assetRouter)
+app.use('/api/',forgotPasswordRouter)
 app.get('/api/landandasset/:id',(req,res)=>{
     const landandasset=data.LandAndEstateData.find((x)=> Number(x._id) === Number(req.params.id))
    
