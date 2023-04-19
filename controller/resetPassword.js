@@ -12,7 +12,6 @@ const EXPIRATION_MINUTES = 30;
 
 const ForgotPasswordPost= async  (req, res) => {
     const { email } = req.body;
-   
     // Check if the email exists in the database
     const user = await User.findOne({ email });
 
