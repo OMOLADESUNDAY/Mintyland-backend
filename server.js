@@ -14,8 +14,9 @@ app.get('/api/product/id/:id',(req,res)=>{
     else{
         res.status(404).send({message:'Page not found'})
     }
-   
+
 })
+// kk
 // app.get('/api/:id',(req,res)=>{
 //     if(Number(req.params.id) === Number(3)){
 //         const a=typeof(Number(req.params.id))
